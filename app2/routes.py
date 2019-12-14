@@ -20,7 +20,10 @@ def index():
     return render_template('index.html', title='Microblg')
 
 
-@app.route('/login', methods=['GET', 'POST'])
+
+
+
+@app.route('/your/webroot/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -29,12 +32,7 @@ def login():
         return redirect('/index')
     return render_template('login.html', title='Sign In', form=form)
 
-
 """
-@app.route('/your/webroot/login')
-def hello_world():
-    return 'Hello World!'
-
 @app.route('/your/webroot/spell_check')
 def hello_world():
     return 'Hello World!'
@@ -49,5 +47,7 @@ def registration():
         else:
             return redirect(url_for('spell_check'))
     return render_template('login.html', error=error)
+@app.route('/login', methods=['GET', 'POST'])
+
 
 """
