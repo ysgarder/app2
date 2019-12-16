@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Sign In</h1>
+    <h1>Spell check</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>{{ form.inputtext.label }}<br>
            {{ form.inputtext() }}</p>
-        <p>{{ form.outputtext.label }}<br>
-           {{ form.outputtext() }}</p>
+        <p>{{ form.textout.label }}<br>
+           {{ form.textout() }}</p>
+        <p>{{ form.misspelled() }}</p>
         <p>{{ form.submittext() }}</p>
     </form>
 {% endblock %}
