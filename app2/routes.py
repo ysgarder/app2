@@ -44,14 +44,15 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.uname.data).first()
         if not (not (user is None) and user.check_password(form.pword.data)):
-            flash('Invalid Username or password')
             form.result.data = 'Incorrect'
+            flash(form.result.data)
             return redirect(url_for('login'))
         if not (not (user is None) and user.check_2fa(form.twofa.data)):
-            flash('Invalid 2FA')
             form.result.data = "Two-Factor failure"
+            flash(form.result.data)
             return redirect(url_for('login'))
         form.result.data = "Success"
+        flash(form.result.data)
         login_user(user, remember=form.remember_me.data)
         # next_page = request.args.get('next')
         # if not next_page or url_parse(next_page).netloc != '':
@@ -72,7 +73,7 @@ def register():
         user.set_2fa(form.twofa.data)
         db.session.add(user)
         db.session.commit()
-        form.success.data = "Registration Success"
+        form.success.data = "Registration success"
         flash(form.success.data)
         return redirect(url_for('login'))
     form.success.data = "Registration failure"
