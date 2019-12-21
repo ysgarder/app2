@@ -46,11 +46,11 @@ def login():
         if not (not (user is None) and user.check_password(form.pword.data)):
             form.result.data = 'Incorrect'
             flash(form.result.data)
-            return redirect(url_for('login'))
+            render_template('login.html', title=form.result.data, form=form)
         if not (not (user is None) and user.check_2fa(form.twofa.data)):
             form.result.data = "Two-Factor failure"
             flash(form.result.data)
-            return redirect(url_for('login'))
+            return render_template('login.html', title=form.result.data, form=form)
         form.result.data = "Success"
         flash(form.result.data)
         login_user(user, remember=form.remember_me.data)
@@ -58,7 +58,7 @@ def login():
         # if not next_page or url_parse(next_page).netloc != '':
         #    next_page = url_for('spell_check')
 
-        return redirect(url_for('index'))
+        return render_template('login.html', title=form.result.data, form=form)
     return render_template('login.html', title='Sign In', form=form)
 
 
