@@ -42,4 +42,4 @@ class SpellQueries(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return'<SpellQueries {}'.format(self.body)
+        return'<SpellQueries {}'.format(self.query)

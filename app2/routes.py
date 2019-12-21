@@ -75,10 +75,12 @@ def register():
         db.session.commit()
         form.success.data = "Registration success"
         flash(form.success)
-        render_template('register.html', title=form.result.data, form=form)
-    form.success.data = "Registration failure"
-    flash(form.success)
-    return render_template('register.html', title=form.success.data, form=form)
+        render_template('register.html', title='Registered', form=form)
+    else:
+        form.success.data = "Registration failure"
+        flash(form.success)
+        render_template('register.html', title='Registeration Failed', form=form)
+    return render_template('register.html', title='Registration', form=form)
 
 
 @app.route('/spell_check',  methods=['GET', 'POST'])
