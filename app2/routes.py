@@ -56,6 +56,7 @@ def login():
         # next_page = request.args.get('next')
         # if not next_page or url_parse(next_page).netloc != '':
         #    next_page = url_for('spell_check')
+
         return redirect(url_for('index'))
     return render_template('login.html', title='Sign In', form=form)
 
@@ -74,7 +75,7 @@ def register():
         form.success.data = "Registration Success"
         flash(form.success.data)
         return redirect(url_for('login'))
-    form.success.data = "Registration failed"
+    form.success.data = "Registration failure"
     flash(form.success.data)
     return render_template('register.html', title='Register', form=form)
 
