@@ -45,11 +45,11 @@ def login():
         user = User.query.filter_by(username=form.uname.data).first()
         if not (not (user is None) and user.check_password(form.pword.data)):
             form.result.data = 'Incorrect'
-            flash(form.result.data)
+            flash(form.result)
             render_template('login.html', title=form.result.data, form=form)
         if not (not (user is None) and user.check_2fa(form.twofa.data)):
             form.result.data = "Two-Factor failure"
-            flash(form.result.data)
+            flash(form.result)
             return render_template('login.html', title=form.result.data, form=form)
         form.result.data = "Success"
         flash(form.result.data)
@@ -74,11 +74,11 @@ def register():
         db.session.add(user)
         db.session.commit()
         form.success.data = "Registration success"
-        flash(form.success.data)
-        return redirect(url_for('login'))
+        flash(form.success)
+        render_template('register.html', title=form.result.data, form=form)
     form.success.data = "Registration failure"
-    flash(form.success.data)
-    return render_template('register.html', title='Register', form=form)
+    flash(form.success)
+    return render_template('register.html', title=form.success.data, form=form)
 
 
 @app.route('/spell_check',  methods=['GET', 'POST'])
