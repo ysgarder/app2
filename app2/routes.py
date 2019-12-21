@@ -64,8 +64,8 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('spell_check'))
+    '''if current_user.is_authenticated:
+        return redirect(url_for('spell_check'))'''
     form = RegForm()
     if form.validate_on_submit():
         user = User(username=form.uname.data)
